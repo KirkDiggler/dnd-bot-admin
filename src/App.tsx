@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
+import {createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 import './App.css';
+import TopNav from "./components/TopNav";
+import {Classes} from "@blueprintjs/core";
 
+import RoomList from "./rooms/RoomList";
 function App() {
+let rootClass = "app-root";
+rootClass = `${rootClass} ${Classes.DARK}`;
+document.body.style.backgroundColor = "#30404d";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div
+          className={rootClass}
+          style={{display: "flex", flexDirection: "column", height: "100vh"}}
+      >
+          <TopNav/>
+          <main
+              style={{
+                  flexGrow: "1",
+                  marginTop: "50px",
+                  padding: "10px",
+                  width: "100%",
+              }}
+          >
+              <Routes>
+
+                  <Route path="/rooms" element={<RoomList/>}/>
+              </Routes>
+          </main>
+
+      </div>
   );
 }
+const router = createBrowserRouter([
+    {
+        path: "/*",
+        element: <App />,
+    },
+]);
 
-export default App;
+const AppRoot = () => {
+    return <RouterProvider router={router} />;
+};
+
+export default AppRoot;
+
