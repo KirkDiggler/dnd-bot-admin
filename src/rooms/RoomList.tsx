@@ -17,7 +17,6 @@ const RoomListRoute = () => {
         <div>
             <Routes>
                 <Route path="/rooms" element={<RoomList />} />
-
             </Routes>
         </div>
     );

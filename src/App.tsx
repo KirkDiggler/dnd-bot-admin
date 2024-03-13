@@ -2,35 +2,22 @@ import React from 'react';
 import {createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 import './App.css';
 import TopNav from "./components/TopNav";
-import {Classes} from "@blueprintjs/core";
+import {Classes, Colors} from "@blueprintjs/core";
 
 import RoomList from "./rooms/RoomList";
 function App() {
-let rootClass = "app-root";
-rootClass = `${rootClass} ${Classes.DARK}`;
-document.body.style.backgroundColor = "#30404d";
-
+    document.body.style.backgroundColor = Colors.DARK_GRAY2;
   return (
-      <div
-          className={rootClass}
-          style={{display: "flex", flexDirection: "column", height: "100vh"}}
-      >
-          <TopNav/>
-          <main
-              style={{
-                  flexGrow: "1",
-                  marginTop: "50px",
-                  padding: "10px",
-                  width: "100%",
-              }}
-          >
-              <Routes>
+    <div
+      className={Classes.DARK}
+      style={{display: "flex", flexDirection: "column", height: "100vh"}}
+    >
+      <TopNav/>
+      <Routes>
+          <Route path="/rooms" element={<RoomList/>}/>
+      </Routes>
 
-                  <Route path="/rooms" element={<RoomList/>}/>
-              </Routes>
-          </main>
-
-      </div>
+    </div>
   );
 }
 const router = createBrowserRouter([
